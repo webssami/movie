@@ -27,6 +27,7 @@ react(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
       figmaLinkedPackageSourcemaps(),
     ],
+    base: '/movie/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
