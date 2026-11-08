@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react"
 
-const A = "/assets/"
+const A = "/movie/assets/"
 
 type MovieCatalogItem = {
   image: string
