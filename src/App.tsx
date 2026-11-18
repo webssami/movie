@@ -3,19 +3,17 @@ import MoviesPage from "./MoviesPage"
 
 const A = `${import.meta.env.BASE_URL}assets/`
 
-const BASE = import.meta.env.BASE_URL;
+const BASE = import.meta.env.BASE_URL
 
-const goToMovies = () => {
-  window.history.pushState(
-    {},
-    '',
-    `${BASE}movies`
-  );
-
-  window.dispatchEvent(
-    new PopStateEvent('popstate')
-  );
-};
+// GitHub Pages project URL is /movie/. Remove that prefix before matching routes.
+const getRoute = () => {
+  const basePath = BASE.endsWith("/") ? BASE : `${BASE}/`
+  const pathname = window.location.pathname
+  const routePath = pathname.startsWith(basePath)
+    ? `/${pathname.slice(basePath.length)}`
+    : pathname
+  return routePath.replace(/\/+$/, "") || "/"
+}
 
 
 
@@ -59,7 +57,7 @@ function Brand({ onHome }: { onHome?: () => void }) {
   return (
     <a
       className="brand"
-      href="/"
+      href={BASE}
       onClick={(event) => {
         if (!onHome) return
         event.preventDefault()
@@ -95,7 +93,7 @@ function Header({
         <nav aria-label="주요 메뉴" className={open ? "nav open" : "nav"}>
           <a
             className={page === "home" ? "active" : ""}
-            href="/"
+            href={BASE}
             style={{ position: "relative" }}
             onClick={(event) => {
               event.preventDefault()
@@ -106,7 +104,7 @@ function Header({
           </a>
           <a
             className={page === "movies" ? "active" : ""}
-            href="/movies"
+            href={`${BASE}movies`}
             onClick={(event) => {
               event.preventDefault()
               navigate("movies")
@@ -560,19 +558,19 @@ const movieCatalog = [
 
 export default function App() {
   const [page, setPage] = useState<"home" | "movies">(
-    () => window.location.pathname === "/movies" ? "movies" : "home",
+    () => getRoute() === "/movies" ? "movies" : "home",
   )
 
   useEffect(() => {
-    const syncPage = () => setPage(window.location.pathname === "/movies" ? "movies" : "home")
+    const syncPage = () => setPage(getRoute() === "/movies" ? "movies" : "home")
     window.addEventListener("popstate", syncPage)
     return () => window.removeEventListener("popstate", syncPage)
   }, [])
 
   const navigate = (nextPage: "home" | "movies", query = "") => {
     const path = nextPage === "movies"
-      ? `/movies${query ? `?q=${encodeURIComponent(query)}` : ""}`
-      : "/"
+      ? `${BASE}movies${query ? `?q=${encodeURIComponent(query)}` : ""}`
+      : BASE
     window.history.pushState({}, "", path)
     setPage(nextPage)
     window.scrollTo({ top: 0, behavior: "smooth" })

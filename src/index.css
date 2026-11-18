@@ -27,7 +27,7 @@ button,a,input{font:inherit} button,a{color:inherit} button{cursor:pointer}
 .swipe-rail img{-webkit-user-drag:none}
 
 .movies-page{min-height:calc(100vh - 88px)}
-.movies-heading{min-height:310px;padding:78px max(24px,calc((100% - 1280px)/2));display:flex;align-items:flex-end;justify-content:space-between;background:linear-gradient(90deg,rgba(11,11,12,.96),rgba(11,11,12,.62)),url('/assets/3d30c.png') center 42%/cover;border-bottom:1px solid #303033}
+.movies-heading{min-height:310px;padding:78px max(24px,calc((100% - 1280px)/2));display:flex;align-items:flex-end;justify-content:space-between;background:linear-gradient(90deg,rgba(11,11,12,.96),rgba(11,11,12,.62)),url('/movie/assets/3d30c.png') center 42%/cover;border-bottom:1px solid #303033}
 .movies-heading>div>p{margin:0 0 8px;color:#e52b38;font:600 11px 'Inter:Semi Bold';letter-spacing:.08em}
 .movies-heading h1{margin:0;font:700 52px/1.2 'Noto Sans KR:Bold'}
 .movies-heading>div>span{display:block;margin-top:12px;color:#b0b0b5;font-size:14px}
