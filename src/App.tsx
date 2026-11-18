@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import MoviesPage from "./MoviesPage"
 
-const A = "/assets/"
+const A = `${import.meta.env.BASE_URL}assets/`
 
 const movies = [
   { image: "a5765.png", title: "룩백", meta: "드라마 · 100분" },
