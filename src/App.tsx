@@ -3,6 +3,22 @@ import MoviesPage from "./MoviesPage"
 
 const A = `${import.meta.env.BASE_URL}assets/`
 
+const BASE = import.meta.env.BASE_URL;
+
+const goToMovies = () => {
+  window.history.pushState(
+    {},
+    '',
+    `${BASE}movies`
+  );
+
+  window.dispatchEvent(
+    new PopStateEvent('popstate')
+  );
+};
+
+
+
 const movies = [
   { image: "a5765.png", title: "룩백", meta: "드라마 · 100분" },
   {
